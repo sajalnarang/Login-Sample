@@ -1,16 +1,23 @@
 package com.example.sajalnarang.loginsample;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-    EditText usernameEditText;
-    EditText passwordEditText;
-    Button loginButton;
+public class MainActivity extends AppCompatActivity implements Callback<GsonModels.UserDetails> {
+
+    private EditText usernameEditText;
+    private EditText passwordEditText;
+    private Button loginButton;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +33,36 @@ public class MainActivity extends AppCompatActivity {
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
-                //Send HTTP request
+                if(username.isEmpty()) {
+                    Toast.makeText(getApplicationContext(),"Username is required",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    progressDialog = new ProgressDialog(MainActivity.this);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setCancelable(true);
+                    progressDialog.setMessage("Authenticating");
+                    RetrofitInterface retrofitInterface = ServiceGenerator.createService(RetrofitInterface.class);
+                    retrofitInterface.getUserDetails(username, password).enqueue(MainActivity.this);
+                    progressDialog.show();
+                }
             }
         });
+    }
+
+    @Override
+    public void onResponse(Call<GsonModels.UserDetails> call, Response<GsonModels.UserDetails> response) {
+        if(response.isSuccessful()) {
+            GsonModels.UserDetails userDetails = response.body();
+            Toast.makeText(MainActivity.this, userDetails.getName() + userDetails.getEmail() + userDetails. getRollno(), Toast.LENGTH_SHORT).show();
+            //Use the userDetails
+        }
+        else {
+            Toast.makeText(MainActivity.this, "Response Code: " + String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onFailure(Call<GsonModels.UserDetails> call, Throwable t) {
+        Toast.makeText(MainActivity.this, "onFailure called", Toast.LENGTH_SHORT).show();
     }
 }
