@@ -33,10 +33,9 @@ public class MainActivity extends AppCompatActivity implements Callback<GsonMode
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
-                if(username.isEmpty()) {
-                    Toast.makeText(getApplicationContext(),"Username is required",Toast.LENGTH_SHORT).show();
-                }
-                else {
+                if (username.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Username is required", Toast.LENGTH_SHORT).show();
+                } else {
                     progressDialog = new ProgressDialog(MainActivity.this);
                     progressDialog.setIndeterminate(true);
                     progressDialog.setCancelable(true);
@@ -51,13 +50,12 @@ public class MainActivity extends AppCompatActivity implements Callback<GsonMode
 
     @Override
     public void onResponse(Call<GsonModels.UserDetails> call, Response<GsonModels.UserDetails> response) {
-        if(response.isSuccessful()) {
+        if (response.isSuccessful()) {
             GsonModels.UserDetails userDetails = response.body();
-            Toast.makeText(MainActivity.this, userDetails.getName() + userDetails.getEmail() + userDetails. getRollno(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, userDetails.getName() + userDetails.getEmail() + userDetails.getRollno(), Toast.LENGTH_SHORT).show();
             //Use the userDetails
-        }
-        else {
-            Toast.makeText(MainActivity.this, "Response Code: " + String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MainActivity.this, "Response Code: " + String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
         }
     }
 
