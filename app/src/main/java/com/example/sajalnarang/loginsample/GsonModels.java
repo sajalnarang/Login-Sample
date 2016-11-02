@@ -4,7 +4,7 @@ public class GsonModels {
 
     public class UserDetails {
         private String name;
-        private String rollno;
+        private int rollno;
         private String email;
 
         public String getName() {
@@ -15,11 +15,11 @@ public class GsonModels {
             this.name = name;
         }
 
-        public String getRollno() {
+        public int getRollno() {
             return rollno;
         }
 
-        public void setRollno(String rollno) {
+        public void setRollno(int rollno) {
             this.rollno = rollno;
         }
 
@@ -31,7 +31,7 @@ public class GsonModels {
             this.email = email;
         }
 
-        public UserDetails(String name, String rollno, String email) {
+        public UserDetails(String name, int rollno, String email) {
 
             this.name = name;
             this.rollno = rollno;

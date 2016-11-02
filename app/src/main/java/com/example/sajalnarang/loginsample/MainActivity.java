@@ -36,13 +36,8 @@ public class MainActivity extends AppCompatActivity implements Callback<GsonMode
                 if (username.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Username is required", Toast.LENGTH_SHORT).show();
                 } else {
-                    progressDialog = new ProgressDialog(MainActivity.this);
-                    progressDialog.setIndeterminate(true);
-                    progressDialog.setCancelable(true);
-                    progressDialog.setMessage("Authenticating");
                     RetrofitInterface retrofitInterface = ServiceGenerator.createService(RetrofitInterface.class);
                     retrofitInterface.getUserDetails(username, password).enqueue(MainActivity.this);
-                    progressDialog.show();
                 }
             }
         });
@@ -61,6 +56,6 @@ public class MainActivity extends AppCompatActivity implements Callback<GsonMode
 
     @Override
     public void onFailure(Call<GsonModels.UserDetails> call, Throwable t) {
-        Toast.makeText(MainActivity.this, "onFailure called", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "onFailure called"+t.toString(), Toast.LENGTH_LONG).show();
     }
 }
