@@ -7,6 +7,13 @@ public class GsonModels {
         private int rollno;
         private String email;
 
+        public UserDetails(String name, int rollno, String email) {
+
+            this.name = name;
+            this.rollno = rollno;
+            this.email = email;
+        }
+
         public String getName() {
             return name;
         }
@@ -28,13 +35,6 @@ public class GsonModels {
         }
 
         public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public UserDetails(String name, int rollno, String email) {
-
-            this.name = name;
-            this.rollno = rollno;
             this.email = email;
         }
     }

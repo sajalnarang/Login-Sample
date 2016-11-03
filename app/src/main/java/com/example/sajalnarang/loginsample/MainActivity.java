@@ -1,8 +1,8 @@
 package com.example.sajalnarang.loginsample;
 
 import android.app.ProgressDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,6 +56,6 @@ public class MainActivity extends AppCompatActivity implements Callback<GsonMode
 
     @Override
     public void onFailure(Call<GsonModels.UserDetails> call, Throwable t) {
-        Toast.makeText(MainActivity.this, "onFailure called"+t.toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, "onFailure called" + t.toString(), Toast.LENGTH_LONG).show();
     }
 }

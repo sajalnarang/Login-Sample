@@ -21,8 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username"
-            android:text="Divyansh"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:text="Divyansh" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -34,8 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:text="qwerty12345"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:text="qwerty12345" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
